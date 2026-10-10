@@ -1,34 +1,3 @@
-(() => {
-  const root = document.documentElement;
-  root.classList.add('js');
-  const button = document.querySelector('.theme-toggle');
-  const label = document.querySelector('.theme-label');
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
-  const current = () => root.dataset.theme || (media.matches ? 'dark' : 'light');
-  const update = () => {
-    const next = current() === 'dark' ? 'light' : 'dark';
-    button.setAttribute('aria-label', `Switch to ${next} theme`);
-    label.textContent = next === 'dark' ? 'Dark' : 'Light';
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = current() === 'dark' ? '#14231d' : '#eff3ef';
-  };
-  button.hidden = false;
-  button.addEventListener('click', () => {
-    root.dataset.theme = current() === 'dark' ? 'light' : 'dark';
-    try { localStorage.setItem('neha-theme', root.dataset.theme); } catch {}
-    update();
-  });
-  media.addEventListener('change', update);
-  update();
-  const menu = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('#site-nav');
-  menu.hidden = false;
-  const close = () => { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('is-open'); };
-  menu.addEventListener('click', () => {
-    const open = menu.getAttribute('aria-expanded') !== 'true';
-    menu.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open);
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('is-open')) { close(); menu.focus(); } });
-  window.matchMedia('(min-width: 781px)').addEventListener('change', close);
-})();
+(()=>{'use strict';const root=document.documentElement;root.classList.add('js');const themeButton=document.querySelector('.theme-toggle'),themeLabel=document.querySelector('.theme-label'),media=matchMedia('(prefers-color-scheme:dark)');try{const t=localStorage.getItem('neha-theme');if(['dark','light'].includes(t))root.dataset.theme=t}catch{}const current=()=>root.dataset.theme||(media.matches?'dark':'light');function updateTheme(){const mode=current();root.dataset.theme=mode;themeButton.setAttribute('aria-label',`Switch to ${mode==='dark'?'light':'dark'} theme`);themeLabel.textContent=mode==='dark'?'Light':'Dark';document.querySelector('meta[name=theme-color]').content=mode==='dark'?'#14251f':'#edf1ee'}updateTheme();themeButton.addEventListener('click',()=>{root.dataset.theme=current()==='dark'?'light':'dark';try{localStorage.setItem('neha-theme',root.dataset.theme)}catch{}updateTheme()});const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('#site-nav');function closeMenu(){menu.setAttribute('aria-expanded','false');nav.classList.remove('is-open')}menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('is-open')){closeMenu();menu.focus()}});document.addEventListener('click',e=>{if(!e.target.closest('.header-actions'))closeMenu()});matchMedia('(min-width:801px)').addEventListener('change',closeMenu);
+const previews={store:{name:'Common Form',url:'demos/store/',image:'assets/common-form-concept.png',alt:'Actual Common Form homeware storefront concept'},stay:{name:'Stillwater House',url:'demos/stay/',image:'assets/stillwater-concept.png',alt:'Actual Stillwater House hotel concept'},editor:{name:'Inkwell',url:'inkwell/',image:'assets/inkwell-workspace.png',alt:'Actual Inkwell rich-text editor prototype'}};document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{const p=previews[button.dataset.preview];document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));document.querySelector('#preview-image').src=p.image;document.querySelector('#preview-image').alt=p.alt;document.querySelector('#preview-link').href=p.url;document.querySelector('#preview-link').setAttribute('aria-label',`Explore ${p.name}`);document.querySelector('#preview-name').textContent=p.name}));
+const conceptGrid=document.querySelector('.concept-grid');document.querySelectorAll('[data-sector-filter]').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.sectorFilter;document.querySelectorAll('[data-sector-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let n=0;conceptGrid.querySelectorAll('[data-sector]').forEach(card=>{card.hidden=filter!=='all'&&card.dataset.sector!==filter;if(!card.hidden)n++});conceptGrid.classList.toggle('is-filtered',filter!=='all');document.querySelector('#concept-count').textContent=`${n} working ${n===1?'concept':'concepts'}`}));})();
