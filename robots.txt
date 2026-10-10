@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /portfolio-studio/
+Sitemap: https://neha-pd.github.io/portfolio-studio/sitemap.xml
