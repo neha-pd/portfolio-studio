@@ -7,3 +7,4 @@
 @media(forced-colors:active){.sector-tools button[aria-pressed=true]{outline:2px solid Highlight}.theme-toggle,.round-link>span{border:1px solid ButtonText}}
 /* Preserve word spacing at large display sizes and narrow mobile widths. */
 h1{letter-spacing:-.045em}.hero h1{letter-spacing:-.045em}h2{letter-spacing:-.045em}.contact-section h2{letter-spacing:-.05em}
+.concept-grid.has-many .concept-card:first-child{display:block;grid-column:auto}.concept-grid.has-many .concept-card:first-child .concept-info{padding-top:21px}.concept-grid.has-many .concept-card:first-child h3{font-size:36px}.concept-grid.has-many .concept-card:first-child img{aspect-ratio:1.6}
