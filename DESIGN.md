@@ -10,3 +10,9 @@ References inspected before implementation:
 - Additional Behance pages for Creative Website Developer's Portfolio and Immersive Website Portfolio were blocked by403. They are not claimed as inspected references.
 
 Implementation: replace current page structure and CSS, preserve URL/anchors and factual case-study content, retain original résumé and external repo links. Lead with functional work discovery, clearly separate professional contributions from fictional industry demos and personal prototypes. Make all links and filters work with keyboard and touch. Actual screenshots replace decorative thumbnails. No copied reference screenshots appear on the public site. Progressive enhancement, theme support, mobile menu/Escape, reduced motion, contrast and reflow checks required.
+
+## Person-first restoration, 11 October 2026
+
+User correction: Neha’s introduction and experience must be prominent; demos belong on a dedicated landing page. Audit found the prior rebuild led with Common Form and placed six concepts plus five prototypes ahead of Neha’s professional history. This reversed the recruiter journey. The earlier `8d0305e` portrait hero provides the preferred hierarchy, restored within the existing jade/porcelain design language.
+
+Design read: a person-first engineering portfolio for hiring managers, calm editorial native CSS. Dials: variance6, motion3, density4. Retain original reference direction above, existing verified portrait, actual project images, all six demo URLs, professional case details, résumé, theme/mobile navigation and client/employer distinction. Main journey: portrait/introduction → about → explicit career chronology → professional work → concise personal project links → demo invitation → contact. Dedicated `/demos/` houses the complete six-sector gallery and five personal prototype previews. Main-page old `#concepts`, `#building`, `#projects` links remain meaningful. No invented credentials or new metrics.
